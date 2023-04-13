@@ -5,11 +5,17 @@
  */
 function showRandomImageAtStart() {
     // TODO: Select all 6 links (<a>) in the thumbnail section. They contain the URLs to the full images.
+    const links = document.querySelectorAll('#thumbnails a');
     // TODO: Select a random entry out of these 6.
+    const randomIndex = Math.floor(Math.random() * links.lenght);
     // TODO: Implement switchFullImage() below.
+
     // TODO: Call switchFullImage() with the URL of the random image and the alt attribute of the thumbnail (it contains the description).
+    switchFullImage(imageUrl, imageDescription)
     // TODO: Set a background color (classes .bg-dark and .text-white) to the card-body of your random image (hint: it's the sibling element of your link).
+
 }
+
 
 /**
  * Prepare the links on the full images so that they execute the following tasks:
@@ -19,7 +25,14 @@ function showRandomImageAtStart() {
  */
 function prepareLinks() {
     // TODO: Select all the 6 links (<a>) in the thumbnail section.
+    const links = document.querySelectorAll('#thumbnails a');
+
     // TODO: Set an event listener for the click event on every <a> element.
+    //here
+
+
+
+    
     //  (or advanced: think of a way to do it with one single handler)
 
     // TODO: The callback of the listener should do the following things:
@@ -48,9 +61,15 @@ function storeNotes() {
  */
 function switchFullImage(imageUrl, imageDescription) {
     // TODO: Get the <img> element for the full image. Select it by its class or tag name.
+    const img = document.querySelectorAll(".card-link");
+  
     // TODO: Set its src and alt attributes with the values from the parameters (imageUrl, imageDescription).
+    img.src = imageUrl;
+    img.alt = imageDescription;
     // TODO: Select the <figcaption> element.
+    const caption = document.querySelector('.py-3 container figure-caption text-center');
     // TODO: Set the description (the one you used for the alt attribute) as its text content.
+    caption.textContent = imageDescription;
 }
 
 /**
