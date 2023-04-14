@@ -5,15 +5,28 @@
  */
 function showRandomImageAtStart() {
     // TODO: Select all 6 links (<a>) in the thumbnail section. They contain the URLs to the full images.
-    const links = document.querySelectorAll('#thumbnails a');
+    const div = document.getElementById("pictures");
+    const links = div.querySelectorAll('a[href]');
+    const hrefs = [];
+    links.forEach(link => {
+        hrefs.push(link.href);
+    });
     // TODO: Select a random entry out of these 6.
-    const randomIndex = Math.floor(Math.random() * links.lenght);
+    console.log("linklenght= " + links.length)
+    const randomIndex = getRandomInt(0, links.length-1);
+    console.log(randomIndex)
     // TODO: Implement switchFullImage() below.
+    //const randomLink = links[randomIndex];
+    console.log(links[randomIndex])
+    const imageUrl = links[randomIndex].href;
+    const imageDescription = links[randomIndex].querySelector('img').alt;
 
     // TODO: Call switchFullImage() with the URL of the random image and the alt attribute of the thumbnail (it contains the description).
     switchFullImage(imageUrl, imageDescription)
-    // TODO: Set a background color (classes .bg-dark and .text-white) to the card-body of your random image (hint: it's the sibling element of your link).
-    links[randomIndex].parentNode.classList.add('bg-dark','text-white');
+// TODO: Set a background color (classes .bg-dark and .text-white) to the card-body of your random image (hint: it's the sibling element of your link).
+    const cardBody = randomLink.parentElement.nextElementSibling;
+    cardBody.classList.add('bg-dark', 'text-white');
+    document.getElementById('bigpicture').innerHTML = imageUrl;
 
 }
 
@@ -49,9 +62,7 @@ function prepareLinks() {
         const key = imageUrl;
         loadNotes(key)
         }
-        )})
-
-    
+        )})   
 }
 
 /**
@@ -61,9 +72,15 @@ function storeNotes() {
     // TODO: Select the notes field and add a blur listener.
     const Notes = document.querySelector('#notes'); 
     Notes.addEventListener('blur',function(){
+        const key = document.querySelector('figure img').src;
+        const notes = this.innerHTML;
+        if (notes.length > 0){
+            localStorage.setItem(key,notes);
+        } else {
+            localStorage.removeItem(key);
+        }
         
     })
-
     // TODO: When the notes field loses focus, store the notes for the current image in the local storage.
     // TODO: If the notes field is empty, remove the local storage entry.
     // TODO: Choose an appropriate key (hint: the full image's URL makes an easy and unique key).
@@ -77,13 +94,13 @@ function storeNotes() {
  */
 function switchFullImage(imageUrl, imageDescription) {
     // TODO: Get the <img> element for the full image. Select it by its class or tag name.
-    const img = document.querySelectorAll(".card-link");
-  
+    const img = document.querySelector("figure > img");
+    console.log(img)
     // TODO: Set its src and alt attributes with the values from the parameters (imageUrl, imageDescription).
     img.src = imageUrl;
     img.alt = imageDescription;
     // TODO: Select the <figcaption> element.
-    const caption = document.querySelector('.py-3 container figure-caption text-center');
+    const caption = document.querySelector('.figure-caption .text-center');
     // TODO: Set the description (the one you used for the alt attribute) as its text content.
     caption.textContent = imageDescription;
 }
