@@ -111,8 +111,11 @@ function switchFullImage(imageUrl, imageDescription) {
  */
 function loadNotes(key) {
     // TODO: Select the notes field.
+    const Notes = document.querySelector('#notes');
     // TODO: Check the local storage at the provided key.
+    //if
     //  - If there's an entry, set the notes field's HTML content to the local storage's content.
+    //else
     //  - If there's no entry, set the default text "Enter your notes here!".
 }
 

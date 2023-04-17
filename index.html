@@ -8,7 +8,7 @@
           integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="css/main.css">
 </head>
-<body>
+<body onload="showRandomImageAtStart()">
 
 <header>
     <div class="navbar navbar-dark bg-dark shadow-sm">
@@ -32,7 +32,7 @@
         <section class="py-3 container" id="fullImage">
             <div class="row">
                 <figure class="figure col-md-12 col-lg-8 mx-auto">
-                    <img id ="bigpicture" class="figure-img img-fluid rounded" onload="showRandomImageAtStart()" alt="Full image placeholder">
+                    <img id ="bigpicture" class="figure-img img-fluid rounded"  alt="Full image placeholder">
                     <figcaption class="figure-caption text-center">A caption for the above image.</figcaption>
                 </figure>
                 <div class="col-md-12 col-lg-8 mx-auto">
@@ -40,7 +40,6 @@
                 </div>
             </div>
         </section>
-
         <!-- Thumbnail area -->
         <section class="py-3 bg-light" id="thumbnails">
             <div class="container" id="pictures">
@@ -57,9 +56,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col d-flex align-items-stretch">
+                    <div class="col d-flex align-items-stretch" onclick="prepareLinks();switchFullImage()">
                         <div class="card shadow-sm">
-                            <a href="images/crater_lake_national_park.webp" class="card-link">
+                            <a href="images/crater_lake_national_park.webp" class="card-link" >
                                 <img src="images/crater_lake_national_park_thumb.webp"
                                      alt="Crater Lake National Park"
                                      class="img-thumbnail">
@@ -69,7 +68,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col d-flex align-items-stretch">
+                    <div class="col d-flex align-items-stretch" onclick="prepareLinks();switchFullImage()">
                         <div class="card shadow-sm">
                             <a href="images/acadia_national_park.webp" class="card-link">
                                 <img src="images/acadia_national_park_thumb.webp"
@@ -82,7 +81,7 @@
                         </div>
                     </div>
 
-                    <div class="col d-flex align-items-stretch">
+                    <div class="col d-flex align-items-stretch" onclick="prepareLinks();switchFullImage()">
                         <div class="card shadow-sm">
                             <a href="images/arches_national_park.webp" class="card-link">
                                 <img src="images/arches_national_park_thumb.webp"
@@ -94,7 +93,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col d-flex align-items-stretch">
+                    <div class="col d-flex align-items-stretch" onclick="prepareLinks();switchFullImage()">
                         <div class="card shadow-sm">
                             <a href="images/sequoia_national_park.webp" class="card-link">
                                 <img src="images/sequoia_national_park_thumb.webp"
@@ -106,7 +105,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col d-flex align-items-stretch">
+                    <div class="col d-flex align-items-stretch" onclick="prepareLinks();switchFullImage()">
                         <div class="card shadow-sm">
                             <a href="images/yosemite_national_park.webp" class="card-link">
                                 <img src="images/yosemite_national_park_thumb.webp"
