@@ -100,9 +100,10 @@ function switchFullImage(imageUrl, imageDescription) {
     img.src = imageUrl;
     img.alt = imageDescription;
     // TODO: Select the <figcaption> element.
-    const caption = document.querySelector('.figure-caption .text-center');
+    const caption = document.querySelector("figure > figcaption");
     // TODO: Set the description (the one you used for the alt attribute) as its text content.
     caption.textContent = imageDescription;
+    console.log(imageDescription)
 }
 
 /**
