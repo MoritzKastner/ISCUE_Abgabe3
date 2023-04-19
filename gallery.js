@@ -25,9 +25,8 @@ function showRandomImageAtStart() {
     switchFullImage(imageUrl, imageDescription)
 // TODO: Set a background color (classes .bg-dark and .text-white) to the card-body of your random image (hint: it's the sibling element of your link).
     let randomLink = links[randomIndex];
-
-    const cardBody = randomLink.parentElement.nextElementSibling;
-    cardBody.classList.add('bg-dark', 'text-white');
+    const Link = randomLink.parentElement.nextElementSibling;
+    Link.classList.add('bg-dark', 'text-white');
     document.getElementById('bigpicture').innerHTML = imageUrl;
 
 }
@@ -41,8 +40,7 @@ function showRandomImageAtStart() {
  */
 function prepareLinks() {
     // TODO: Select all the 6 links (<a>) in the thumbnail section.
-    let section = document.getElementById("thumbnails")
-    let links = section.querySelectorAll("a");
+    let links = document.querySelector('#thumbnails a')
 
     // TODO: Set an event listener for the click event on every <a> element.
     //  (or advanced: think of a way to do it with one single handler)
@@ -53,20 +51,23 @@ function prepareLinks() {
     //  - Call switchFullImage() with the URL clicked link and the alt attribute of the thumbnail.
     //  - Implement and then call loadNotes() with the key for the current image (hint: the full image's URL makes an easy and unique key).
     //  - Prevent the default action for the link (we don't want to follow it).
-    links.forEach(function(link){
+    links.forEach(link=>{
         link.addEventListener("click", function(event){
             event.preventDefault();
-        //let otherLink = 
-        links.forEach(function(otherLink){
-        otherLink.nextElementSibling.classList.remove("bg-dark","text-white");
+        let cardBody = this.parentElement.nextElementSibling;
+        let clickedLink = document.querySelector('.bg-dark');
+        if (clickedLink!== null){
+            clickedLink.classList.remove('bg-dark','text-white');
+            clickedLink.parentElement.nextElementSibling.classList.remove('bg-dark','text-white');
+        }
+        this.classList.add('bg-dark','text-white');
+        cardBody.classList.add('bg-dark','text-white')
 
-        }); 
-        console.log(otherLink)
-        this.nextElementSibling.classList.add("bg-dark","text-white");
-        let key = this.href;
-        let imageDescription =this.querySelector('img').alt;
-        switchFullImage(this.href, imageDescription);
+        let imgUrl = this.href
+        let imageDescription = this.querySelector('img').alt;
+        switchFullImage(imgUrl, imageDescription);
         
+        let key = imageUrl;
         loadNotes(key);
         storeNotes(key);
         event.preventDefault();
@@ -79,7 +80,7 @@ function prepareLinks() {
  */
 function storeNotes() {
     // TODO: Select the notes field and add a blur listener.
-    const Notes = document.querySelector('#notes'); 
+    let Notes = document.querySelector('#notes'); 
     Notes.addEventListener('blur',function(event){
         preventDefault(event);
         const key = document.querySelector('figure img').src;
@@ -132,10 +133,10 @@ if (storedValue !== null && storedValue !== "") {
     Notes.value = "Enter your notes here!";
 }
     //  - If there's an entry, set the notes field's HTML content to the local storage's content.
-    
+console.log(Notes);
+   
     //  - If there's no entry, set the default text "Enter your notes here!".
 }
-
 /**
  * Returns a random integer value between min (included) and max (excluded).
  * @param {number} min The minimum value (included).
