@@ -80,18 +80,22 @@ function prepareLinks() {
  */
 function storeNotes() {
     // TODO: Select the notes field and add a blur listener.
-    let Notes = document.querySelector('#notes'); 
-    Notes.addEventListener('blur',function(event){
-        preventDefault(event);
+    const Notes = document.getElementById("notes"); 
+   
         const key = document.querySelector('figure img').src;
        // console.log(figure img)
-        const notes = this.value;
-        if (notes.length > 0){
-            localStorage.setItem(key,notes);
+        //const notes = Notes.innerHTML;
+        if (localStorage.getItem ("content")){
+           Notes.innerHTML = localStorage.getItem("content");
         } else {
-            localStorage.removeItem(key);
+            Notes.innerHTML = "Enter your Notes here!";
         }
-        
+        Notes.addEventListener('blur',function(){
+        if(this.textContent===""){
+            localStorage.removeItem("content");
+        } else{
+            localStorage.setItem("content",this.innerHTML);
+        }
     })
     // TODO: When the notes field loses focus, store the notes for the current image in the local storage.
     // TODO: If the notes field is empty, remove the local storage entry.
@@ -128,9 +132,9 @@ function loadNotes(key) {
     // TODO: Check the local storage at the provided key.
     let storedValue = localStorage.getItem(key);
 if (storedValue !== null && storedValue !== "") {
-    Notes.value = storedValue;
+    Notes.innerHTML = storedValue;
 } else {
-    Notes.value = "Enter your notes here!";
+    Notes.innerHTML = "Enter your notes here!";
 }
     //  - If there's an entry, set the notes field's HTML content to the local storage's content.
 console.log(Notes);
